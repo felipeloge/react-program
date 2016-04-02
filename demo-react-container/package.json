@@ -1,0 +1,28 @@
+{
+  "name": "demo-react-container",
+  "version": "0.0.1",
+  "description": "Container vs Presentational Components, PropTypes, and Stateless Functional Components.",
+  "main": "index.js",
+  "scripts": {
+    "production": "webpack -p",
+    "start": "webpack-dev-server",
+    "test": "ava 'app/**/*.test.js' --verbose --require ./other/setup-ava-tests.js"
+  },
+  "keywords": [
+    "javascript",
+    "reactjs",
+    "react-router",
+    "container",
+    "proptypes"
+  ],
+  "author": "@felipeloge",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.7.4",
+    "babel-loader": "^6.2.4",
+    "babel-preset-react": "^6.5.0",
+    "html-webpack-plugin": "^2.15.0",
+    "webpack": "^1.12.14",
+    "webpack-dev-server": "^1.14.1"
+  }
+}
