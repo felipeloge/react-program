@@ -1,5 +1,6 @@
 var React = require('react');
 var ConfirmBattle = require('../components/ConfirmBattle');
+var githubHelpers = require('../utils/githubHelpers');
 
 var ConfirmBattleContainer = React.createClass({
    contextTypes: {
@@ -18,6 +19,14 @@ var ConfirmBattleContainer = React.createClass({
    componentDidMount: function () {
       console.log('componentDidMount');
       var query = this.props.location.query;
+      // https://egghead.io/playlists/the-this-key-word-250c37d9
+      githubHelpers.getPlayersInfo([query.playerOne, query.playerTwo])
+         .then(function (players) {
+            this.setState({
+               isLoading: false,
+               playersInfo: players
+            });
+         }.bind(this));
    },
    componentWillReceiveProps: function (nextProps) {
       console.log('componentWillReceiveProps', nextProps);
@@ -29,7 +38,7 @@ var ConfirmBattleContainer = React.createClass({
       return (
          <ConfirmBattle 
             isLoading={this.state.isLoading} 
-            playersInfor={this.state.playersInfo} />
+            playersInfo={this.state.playersInfo} />
       );
    }
 });
