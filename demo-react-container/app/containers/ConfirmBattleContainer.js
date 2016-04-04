@@ -13,9 +13,6 @@ var ConfirmBattleContainer = React.createClass({
          playersInfo: []
       };
    },
-   componentWillMount: function () {
-      console.log('componentWillMount');
-   },
    componentDidMount: function () {
       console.log('componentDidMount');
       var query = this.props.location.query;
@@ -28,17 +25,20 @@ var ConfirmBattleContainer = React.createClass({
             });
          }.bind(this));
    },
-   componentWillReceiveProps: function (nextProps) {
-      console.log('componentWillReceiveProps', nextProps);
-   },
-   componentWillUnmount: function() {
-      console.log('componentWillUnmount');
+   handleInitiateBattle: function () {
+      this.context.router.push({
+         path: '/results',
+         state: {
+            playersInfo: this.state.playersInfo
+         }
+      });
    },
    render: function () {
       return (
          <ConfirmBattle 
             isLoading={this.state.isLoading} 
-            playersInfo={this.state.playersInfo} />
+            playersInfo={this.state.playersInfo} 
+            onInitiateBattle={this.handleInitiateBattle} />
       );
    }
 });
